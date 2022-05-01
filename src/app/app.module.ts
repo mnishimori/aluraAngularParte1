@@ -1,3 +1,4 @@
+import { HomeModule } from './home/home.module';
 import { PhotosModule } from './photos/photos.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,7 +17,8 @@ import { CardComponent } from './shared/components/card/card.component';
     BrowserModule,
     AppRoutingModule,
     PhotosModule,
-    ErrorsModule
+    ErrorsModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
