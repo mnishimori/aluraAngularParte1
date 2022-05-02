@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { PlatformDetectorService } from './../../core/platform-detector/platform-detector.service';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { AuthService } from './../../core/auth.service';
+import { AuthService } from '../../core/auth/auth.service';
 
 
 @Component({
@@ -12,10 +14,13 @@ import { AuthService } from './../../core/auth.service';
 export class SigninComponent implements OnInit {
 
   loginForm: FormGroup;
+  @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
 
   constructor(
     private form: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router,
+    private platformDetectorService: PlatformDetectorService) { }
 
   ngOnInit(): void {
     this.loginForm = this.form.group({
@@ -26,6 +31,26 @@ export class SigninComponent implements OnInit {
 
   login() {
     console.log('vai se autenticar');
+
+    const userName = this.loginForm.get('userName').value;
+    const password = this.loginForm.get('password').value;
+
+    this.authService
+      .authenticate(userName, password)
+      .subscribe(
+        () => {
+          console.log('Logado');
+          this.router.navigate(['user', userName]);
+        },
+        error => {
+          console.log(error);
+          this.loginForm.reset();
+          this.userNameInput.nativeElement.focus();
+        });
   }
 
 }
+function ViewChield() {
+  throw new Error('Function not implemented.');
+}
+
