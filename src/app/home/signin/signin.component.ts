@@ -30,8 +30,6 @@ export class SigninComponent implements OnInit {
   }
 
   login() {
-    console.log('vai se autenticar');
-
     const userName = this.loginForm.get('userName').value;
     const password = this.loginForm.get('password').value;
 
@@ -39,7 +37,6 @@ export class SigninComponent implements OnInit {
       .authenticate(userName, password)
       .subscribe(
         () => {
-          console.log('Logado');
           this.router.navigate(['user', userName]);
         },
         error => {
@@ -48,9 +45,5 @@ export class SigninComponent implements OnInit {
           this.userNameInput.nativeElement.focus();
         });
   }
-
-}
-function ViewChield() {
-  throw new Error('Function not implemented.');
 }
 
