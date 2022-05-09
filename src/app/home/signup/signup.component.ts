@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   // selector: 'app-signup', o selector deste componente pode ser omitido, porque ele não será utilizado em um template de outro componente.
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  providers: [ UserNotTakenValidatorService ]
 })
 export class SignupComponent implements OnInit {
 
