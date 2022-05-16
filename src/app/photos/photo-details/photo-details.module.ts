@@ -5,13 +5,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PhotoDetailsComponent } from './photo-details.component';
 import { PhotoCommentsComponent } from './photo-comments/photo-comments.component';
+import { PhotoOwnerOnlyDirective } from './photo-owner-only/photo-owner-only.directive';
 
 
 
 @NgModule({
   declarations: [
     PhotoDetailsComponent,
-    PhotoCommentsComponent
+    PhotoCommentsComponent,
+    PhotoOwnerOnlyDirective
   ],
   imports: [
     CommonModule,
