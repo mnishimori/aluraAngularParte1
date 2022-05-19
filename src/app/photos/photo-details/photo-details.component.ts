@@ -1,3 +1,4 @@
+import { UserService } from './../../core/user/user.service';
 import { AlertService } from './../../shared/components/alert/alert.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,21 +21,26 @@ export class PhotoDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private photoService: PhotoService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
     this.photoId = this.route.snapshot.params.photoId;
     this.photo$ = this.photoService.findById(this.photoId);
+    this.photo$.subscribe(() => {}, err => {
+      console.log(err);
+      this.router.navigate(['not-found']);
+    })
   }
 
   removePhoto() {
     this.photoService.removePhoto(this.photoId)
     .subscribe(() => {
-      this.alertService.success("Photo removed!");
-      this.router.navigate(['']);
+      this.alertService.success("Photo removed!", true);
+      this.router.navigate(['/user', this.userService.getUserName()]);
     }, err => {
       console.log(err);
-      this.alertService.warning("Could not delete the photo");
+      this.alertService.warning("Could not delete the photo", true);
     })
   }
 
