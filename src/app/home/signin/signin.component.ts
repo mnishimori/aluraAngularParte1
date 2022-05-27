@@ -8,8 +8,8 @@ import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   // selector: 'app-signin', -> o selector deste componente pode ser omitido, porque ele não será utilizado em um template de outro componente.
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  templateUrl: './signin.component.html'
+  // styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
 
