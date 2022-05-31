@@ -12,10 +12,10 @@ export class SignupService {
 
   checkUserNameTaken(userName: string){
 
-    return this.http.get(API_URL + 'user/exists/' + userName);
+    return this.http.get(API_URL + '/user/exists/' + userName);
   }
 
   signUp(newUser: NewUser) {
-    return this.http.post(API_URL + "user/signup/", newUser);
+    return this.http.post(API_URL + "/user/signup/", newUser);
   }
 }

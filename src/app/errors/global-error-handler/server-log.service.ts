@@ -16,6 +16,6 @@ export class ServerLogService {
 
   log(serverLog: ServerLog) {
 
-    return this.http.post(`${serverLog}/infra/log`, serverLog);
+    return this.http.post(`${serverLogUrl}/infra/log`, serverLog);
   }
 }

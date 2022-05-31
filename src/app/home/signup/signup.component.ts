@@ -1,10 +1,12 @@
-import { NewUser } from './new-user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { NewUser } from './new-user';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 import { SignupService } from './signup.service';
-import { Router } from '@angular/router';
+import { userNamePassword } from './username-password.validator';
 
 @Component({
   // selector: 'app-signup', o selector deste componente pode ser omitido, porque ele não será utilizado em um template de outro componente.
@@ -52,11 +54,16 @@ export class SignupComponent implements OnInit {
           Validators.maxLength(14)
         ]
       ]
+    }, {
+      validator: userNamePassword
     });
   }
 
   signUp(){
     const newUser = this.signupForm.getRawValue() as NewUser;
+
+    console.log(newUser);
+
     this.signUpService.signUp(newUser)
       .subscribe(
         user => this.router.navigate(['']),
